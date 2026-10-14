@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blessed mudou de endereço</title>
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="2;url=https://blessedapp.github.io/">
+<link rel="canonical" href="https://blessedapp.github.io/">
+<style>
+:root{color-scheme:dark}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0C0B0E;color:#F8EEF1;font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;text-align:center;padding:24px}
+h1{font-size:30px;margin:0 0 8px}
+p{color:#B1A5B0;margin:0 0 18px}
+a{display:inline-block;background:#E13B40;color:#fff;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Blessed mudou de endereço</h1>
+  <p>Agora o app fica em <b>blessedapp.github.io</b>. Abrindo…</p>
+  <a id="go" href="https://blessedapp.github.io/">Abrir o Blessed</a>
+  <p style="margin-top:18px;font-size:14px">Se você tinha o app na tela inicial, remova o ícone antigo e adicione de novo pelo endereço novo.</p>
+</main>
+<script>
+// leva junto o que vier depois do endereço (ex.: ?foto=...) e desliga o app antigo guardado no aparelho
+var novo = "https://blessedapp.github.io/" + location.search + location.hash;
+document.getElementById("go").href = novo;
+if ("serviceWorker" in navigator) navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); }).catch(function () {});
+if (window.caches) caches.keys().then(function (ks) { ks.forEach(function (k) { if (k.indexOf("blessed-biblia") !== 0) caches.delete(k); }); }).catch(function () {});
+setTimeout(function () { location.replace(novo); }, 600);
+</script>
+</body>
+</html>
